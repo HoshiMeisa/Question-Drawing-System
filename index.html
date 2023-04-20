@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>数字平方</title>
+</head>
+<body>
+  <input type="number" id="number-input" placeholder="输入一个数字">
+  <button id="square-btn">计算平方</button>
+  <div id="result"></div>
+
+  <script>
+    document.getElementById('square-btn').addEventListener('click', async () => {
+      const number = document.getElementById('number-input').value;
+      const response = await fetch(`/api/square?number=${number}`);
+      const { square } = await response.json();
+      document.getElementById('result').innerHTML = `数字 ${number} 的平方是 ${square}`;
+    });
+  </script>
+</body>
+</html>

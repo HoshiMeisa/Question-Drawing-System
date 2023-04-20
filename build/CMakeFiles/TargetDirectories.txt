@@ -1,0 +1,3 @@
+/home/kana/Dazuoye/build/CMakeFiles/helloworld.dir
+/home/kana/Dazuoye/build/CMakeFiles/edit_cache.dir
+/home/kana/Dazuoye/build/CMakeFiles/rebuild_cache.dir
