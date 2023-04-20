@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>管理员登录</title>
+	<link rel="stylesheet" type="text/css" href="../css/style4.css">
+</head>
+<body>
+	<header>
+		<h1>管理员登录</h1>
+		<button class="toggle-btn">侧栏</button>
+	</header>
+	<div class="sidebar">
+        <ul>
+            <li><a href="main.html">主页</a></li>
+            <li><a href="withid.html">学号抽题</a></li>
+            <li><a href="random.html">随机抽题</a></li>
+			<li><a href="admin.html">管理员登录</a></li>
+        </ul>
+    </div>
+	<div class="main-content">
+		<h2>管理员界面</h2>
+		<p>这里是管理员界面。</p>
+	</div>
+	<div class="main-content">
+		<form>
+			<label for="username">用户名：</label>
+			<input type="text" id="username" name="username">
+			<label for="password">密码：</label>
+			<input type="password" id="password" name="password">
+			<button type="submit">登录</button>
+		</form>
+		<div class="alert"></div>
+	</div>
+	
+	<script src="../js/script4.js"></script>
+</body>
+</html>

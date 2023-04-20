@@ -1,0 +1,108 @@
+body {
+	margin: 0;
+}
+header {
+	background-color: #000;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	padding: 10px;
+}
+header h1 {
+	margin: 0;
+	flex: 1;
+}
+.toggle-btn {
+	background-color: #333;
+	color: #fff;
+	border: none;
+	padding: 10px;
+	cursor: pointer;
+}
+.sidebar {
+	position: fixed;
+	top: 0;
+	left: -200px;
+	width: 200px;
+	height: 100%;
+	background-color: #333;
+	color: #fff;
+	transition: all 0.3s ease-in-out;
+}
+.sidebar ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+.sidebar li {
+	padding: 10px;
+}
+.sidebar li a {
+	color: #fff;
+	text-decoration: none;
+}
+.sidebar.visible {
+	left: 0;
+}
+.main-content {
+	margin-left: 200px;
+	padding: 20px;
+}
+
+
+
+header a {
+	color: #fff;
+	margin-right: 20px;
+}
+.main-content {
+	margin: 20px;
+}
+ul.question-list {
+	list-style-type: none;
+	padding: 0;
+	margin-bottom: 20px;
+	display: flex;
+	flex-wrap: wrap;
+}
+.question-item {
+	margin-right: 20px;
+	margin-bottom: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 200px;
+}
+.question-item img {
+	max-width: 100%;
+}
+.question-item h3 {
+	margin-top: 10px;
+	margin-bottom: 0;
+}
+.add-question-form {
+	margin-top: 20px;
+}
+.add-question-form label {
+	display: block;
+	margin-bottom: 10px;
+}
+.add-question-form input[type="file"] {
+	display: block;
+	margin-bottom: 10px;
+}
+button {
+	background-color: #333;
+	color: #fff;
+	border: none;
+	padding: 10px;
+	cursor: pointer;
+}
+.alert {
+	background-color: #f44336;
+	color: #fff;
+	padding: 10px;
+	margin-top: 20px;
+	display: none;
+}
+
