@@ -1,32 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>随机抽题系统</title>
-	<link rel="stylesheet" type="text/css" href="../css/random.css">
+    <meta charset="utf-8">
+    <title>随机抽题</title>
+    <link rel="stylesheet" type="text/css" href="../css/random.css">
 </head>
 <body>
-	<header>
-		<h1>随机抽题</h1>
-		<button class="toggle-btn">侧栏</button>
-	</header>
-	<div class="sidebar">
+    <header>
+        <h1>随机抽题</h1>
+        <button class="toggle-btn">侧栏</button>
+    </header>
+    <div class="sidebar">
         <ul>
             <li><a href="main.html">主页</a></li>
             <li><a href="withid.html">学号抽题</a></li>
             <li><a href="random.html">随机抽题</a></li>
-			<li><a href="admin.html">管理员登录</a></li>
+            <li><a href="admin.html">管理员登录</a></li>
         </ul>
     </div>
-    
-	<div class="main-content">
-		<h2>随机抽题</h2>
-		<div class="questions">
-			<!-- 题目展示区域 -->
-		</div>
-		<button id="random-btn">随机抽题</button>
-	</div>
-	
-	<script src="../js/random.js"></script>
+    <div class="main-content">
+        <button class="random-btn">抽题</button>
+        <div class="question-container"></div>
+    </div>
+    <script src="../js/random.js"></script>
 </body>
 </html>

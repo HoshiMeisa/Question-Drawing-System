@@ -28,7 +28,7 @@ form.addEventListener('submit', (event) => {
 		return;
 	}
 	if (username === 'kanameisa' && password === '000000') {
-		window.location.href = 'manage.html';
+		window.location.href = 'eHcWbPdFfUgGyJjLmNnIiKkOoEqRsTxVzYapQBtSrMvXuZAoDlG.html';
 	} else {
 		showAlert('用户名或密码错误');
 	}

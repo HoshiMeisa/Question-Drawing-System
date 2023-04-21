@@ -1,14 +1,21 @@
-// 加载Wasm模块
-const wasmModule = fetch('../cpp/random.wasm')
-  .then(response => response.arrayBuffer())
-  .then(buffer => WebAssembly.instantiate(buffer, {}))
-  .then(result => result.instance);
+const toggleBtn = document.querySelector('.toggle-btn');
+const sidebar = document.querySelector('.sidebar');
+const randomBtn = document.querySelector('.random-btn');
+const questionContainer = document.querySelector('.question-container');
 
-// 调用抽题函数
-const randomBtn = document.getElementById('random-btn');
-randomBtn.addEventListener('click', async () => {
-  const wasmInstance = await wasmModule;
-  const getRandomQuestions = wasmInstance.exports.getRandomQuestions;
-  const questions = new Int32Array(getRandomQuestions());
-  renderQuestions(questions);
+toggleBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('visible');
+});
+
+randomBtn.addEventListener('click', () => {
+    const questionNum = 6;
+    const totalQuestions = 30;
+    questionContainer.innerHTML = '';
+
+    for (let i = 0; i < questionNum; i++) {
+        const randomIndex = Math.floor(Math.random() * totalQuestions) + 1;
+        const img = document.createElement('img');
+        img.src = `../images/${randomIndex}.png`;
+        questionContainer.appendChild(img);
+    }
 });
