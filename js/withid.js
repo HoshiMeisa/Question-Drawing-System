@@ -15,10 +15,25 @@ links[1].addEventListener('click', (event) => {
 });
 
 
+// 收集访问者信息
+function getUserInfo() {
+  const userAgent = navigator.userAgent;
+  const platform = navigator.platform;
+  const screenWidth = window.screen.width;
+  const screenHeight = window.screen.height;
+
+  return {
+    userAgent,
+    platform,
+    screenWidth,
+    screenHeight,
+  };
+}
+
 // 获取表单和结果div元素
 const idForm = document.getElementById('id-form');
 const resultDiv = document.getElementById('result');
-const alertDiv = document.getElementById('alert');
+const alertDiv = document.getElementById('alert'); // 更新这里
 
 // 定义题库
 const questionBank = [];
@@ -27,7 +42,7 @@ for (let i = 1; i <= 30; i++) {
 }
 
 // 获取已经抽过题的学生学号数组
-fetch('http://localhost:3000/used-ids')
+fetch('http://10.33.88.88:3000/used-ids')
     .then((response) => response.json())
     .then((data) => {
         usedIds = data.map((entry) => entry.id);
@@ -59,22 +74,35 @@ idForm.addEventListener('submit', function(event) {
     // 记录该学号
     usedIds.push(studentId);
 
-    // 更新后端服务器中的usedIds
-    fetch('http://localhost:3000/add-used-id', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ id: studentId, questionImage: questionImage }),
-    });
+  // 更新后端服务器中的usedIds
+  const userInfo = getUserInfo();
+  fetch('http://10.33.88.88:3000/add-used-id', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      id: studentId,
+      questionImage: questionImage,
+      userInfo: userInfo,
+    }),
+  });
 
-    // 显示抽取的题目
-    resultDiv.innerHTML = '';
-    const questionDiv = document.createElement('div');
-    questionDiv.classList.add('question');
-    const questionImg = document.createElement('img');
-    questionImg.src = questionImage;
-    questionDiv.appendChild(questionImg);
-    resultDiv.appendChild(questionDiv);
+  // 显示抽取的题目
+  resultDiv.innerHTML = '';
+
+  // 添加 "抽题结果：" 文本
+  const resultText = document.createElement('p');
+  resultText.textContent = '抽题结果：';
+  resultDiv.appendChild(resultText);
+
+  // 创建并添加题目图像元素
+  const questionDiv = document.createElement('div');
+  questionDiv.classList.add('question');
+  const questionImg = document.createElement('img');
+  questionImg.src = questionImage;
+  questionDiv.appendChild(questionImg);
+  resultDiv.appendChild(questionDiv);
+  
   }
 });

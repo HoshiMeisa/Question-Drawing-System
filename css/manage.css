@@ -48,9 +48,6 @@ header h1 {
 	margin-left: 200px;
 	padding: 20px;
 }
-
-
-
 header a {
 	color: #fff;
 	margin-right: 20px;
@@ -106,3 +103,19 @@ button {
 	display: none;
 }
 
+.draw-records {
+	width: 100%;
+	border-collapse: collapse;
+}
+.draw-records th,
+.draw-records td {
+	border: 1px solid #ccc;
+	padding: 10px;
+	text-align: left;
+}
+.draw-records th {
+	background-color: #f2f2f2;
+}
+.draw-records td button {
+	margin-left: 10px;
+}
