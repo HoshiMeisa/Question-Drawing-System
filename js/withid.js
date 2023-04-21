@@ -18,6 +18,7 @@ links[1].addEventListener('click', (event) => {
 // 获取表单和结果div元素
 const idForm = document.getElementById('id-form');
 const resultDiv = document.getElementById('result');
+const alertDiv = document.getElementById('alert');
 
 // 定义题库
 const questionBank = [];
@@ -25,8 +26,20 @@ for (let i = 1; i <= 30; i++) {
   questionBank.push(`../images/${i}.png`);
 }
 
-// 定义已经抽过题的学生学号数组
-let usedIds = [];
+// 获取已经抽过题的学生学号数组
+fetch('http://localhost:3000/used-ids')
+    .then((response) => response.json())
+    .then((data) => {
+        usedIds = data.map((entry) => entry.id);
+    });
+
+function showAlert(message) {
+	alertDiv.textContent = message;
+	alertDiv.style.display = 'block';
+	setTimeout(() => {
+		alertDiv.style.display = 'none';
+	}, 3000);
+}
 
 // 表单提交事件处理程序
 idForm.addEventListener('submit', function(event) {
@@ -37,11 +50,7 @@ idForm.addEventListener('submit', function(event) {
 
   // 检查是否已经抽过题
   if (usedIds.includes(studentId)) {
-    resultDiv.innerHTML = '';
-    const alertDiv = document.createElement('div');
-    alertDiv.classList.add('alert');
-    alertDiv.innerHTML = '<p>该学号已经抽过题了！</p>';
-    resultDiv.appendChild(alertDiv);
+    showAlert('禁止重复抽题');
   } else {
     // 从题库中随机抽取一题
     const randomIndex = Math.floor(Math.random() * questionBank.length);
@@ -49,6 +58,15 @@ idForm.addEventListener('submit', function(event) {
 
     // 记录该学号
     usedIds.push(studentId);
+
+    // 更新后端服务器中的usedIds
+    fetch('http://localhost:3000/add-used-id', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id: studentId, questionImage: questionImage }),
+    });
 
     // 显示抽取的题目
     resultDiv.innerHTML = '';
@@ -60,17 +78,3 @@ idForm.addEventListener('submit', function(event) {
     resultDiv.appendChild(questionDiv);
   }
 });
-
-// 应用警告样式
-function applyAlertStyle() {
-  const alertDiv = document.querySelector('.alert');
-  if (alertDiv) {
-    alertDiv.style.backgroundColor = '#f44336';
-    alertDiv.style.color = '#fff';
-    alertDiv.style.padding = '10px';
-    alertDiv.style.marginTop = '20px';
-    alertDiv.style.display = 'block';
-  }
-}
-applyAlertStyle();
-
