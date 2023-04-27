@@ -12,7 +12,7 @@ toggleBtn.addEventListener('click', () => {
 
 // Load questions and display them
 async function loadQuestions() {
-    const response = await fetch('http://localhost:3000/get_questions');
+    const response = await fetch('http://10.33.88.88:3000/get_questions');
     const questions = await response.json();
     displayQuestions(questions);
 }
@@ -38,7 +38,7 @@ addQuestionForm.addEventListener('submit', async (event) => {
         formData.append('name', name);
         formData.append('image', image);
 
-        const response = await fetch('http://localhost:3000/add_question', {
+        const response = await fetch('http://10.33.88.88:3000/add_question', {
             method: 'POST',
             body: formData,
         });
@@ -70,7 +70,7 @@ function displayQuestion(question) {
 
 // 获取抽题记录
 async function fetchDrawRecords() {
-    const response = await fetch('http://localhost:3000/used-ids');
+    const response = await fetch('http://10.33.88.88:3000/used-ids');
     const records = await response.json();
     displayDrawRecords(records);
 }
