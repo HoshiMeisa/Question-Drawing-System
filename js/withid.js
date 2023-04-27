@@ -48,6 +48,15 @@ fetch('http://10.33.88.88:3000/used-ids')
         usedIds = data.map((entry) => entry.id);
     });
 
+// Fetch all images from the server
+let allImages = [];
+fetch('http://10.33.88.88:3000/get_images')
+    .then(response => response.json())
+    .then(images => {
+        // 获取所有图片
+        allImages = images;
+    });
+
 function showAlert(message) {
 	alertDiv.textContent = message;
 	alertDiv.style.display = 'block';
@@ -68,8 +77,8 @@ idForm.addEventListener('submit', function(event) {
     showAlert('禁止重复抽题');
   } else {
     // 从题库中随机抽取一题
-    const randomIndex = Math.floor(Math.random() * questionBank.length);
-    const questionImage = questionBank[randomIndex];
+    const randomIndex = Math.floor(Math.random() * allImages.length);
+    const questionImage = allImages[randomIndex];
 
     // 记录该学号
     usedIds.push(studentId);

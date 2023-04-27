@@ -27,7 +27,7 @@ form.addEventListener('submit', (event) => {
 		showAlert('请输入用户名和密码');
 		return;
 	}
-	if (username === 'kanameisa' && password === '000000') {
+	if (username === '000000' && password === '000000') {
 		window.location.href = 'eHcWbPdFfUgGyJjLmNnIiKkOoEqRsTxVzYapQBtSrMvXuZAoDlG.html';
 	} else {
 		showAlert('用户名或密码错误');

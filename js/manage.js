@@ -113,3 +113,5 @@ logoutBtn.addEventListener('click', () => {
 
 // Fetch draw records when the page loads
 fetchDrawRecords();
+
+
