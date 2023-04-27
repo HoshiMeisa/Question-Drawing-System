@@ -1,4 +1,4 @@
-# 大作业
+# 抽题系统
 
 C++面向对象编程的大作业，以HTML作为前端，由C++通过WebAssembly编译而成的JavaScript作为后端。
 
