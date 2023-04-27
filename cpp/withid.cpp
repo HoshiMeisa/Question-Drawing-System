@@ -1,45 +1,34 @@
-#include "httplib.h"
+// functions.cpp
 #include <iostream>
-#include <fstream>
-#include <unordered_set>
-#include <ctime>
-#include <cstdlib>
+#include <string>
+#include <vector>
+#include <chrono>
+#include <thread>
 
-std::unordered_set<std::string> used_ids;
+struct UserInfo {
+  std::string userAgent;
+  std::string platform;
+  int screenWidth;
+  int screenHeight;
+};
 
-httplib::Response withId(const httplib::Request& req) {
-    auto student_id = req.get_param_value("student_id");
+UserInfo getUserInfo() {
+  UserInfo userInfo;
+  // 在C++中，我们不能直接访问浏览器的信息，因此我们用一些示例值填充结构体
+  userInfo.userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64)";
+  userInfo.platform = "Win32";
+  userInfo.screenWidth = 1920;
+  userInfo.screenHeight = 1080;
 
-    if (used_ids.find(student_id) != used_ids.end()) {
-        httplib::Response res;
-        res.status = 200;
-        res.set_content(R"({"error": "该学号已经抽过题目，请勿重复抽题！"})", "application/json");
-        return res;
-    }
-
-    std::srand(std::time(0));
-    int question = std::rand() % 30 + 1;
-
-    used_ids.insert(student_id);
-
-    std::ofstream id_file("used_ids.txt", std::ios::app);
-    id_file << student_id << std::endl;
-    id_file.close();
-
-    std::string json = "{\"question\": " + std::to_string(question) + "}";
-    httplib::Response res;
-    res.status = 200;
-    res.set_content(json, "application/json");
-    return res;
-
+  return userInfo;
 }
 
-int main() {
-    httplib::Server server;
+bool isStudentIdUsed(const std::string &id, const std::vector<std::string> &usedIds) {
+  return std::find(usedIds.begin(), usedIds.end(), id) != usedIds.end();
+}
 
-    server.Get("/api/withid", [](const httplib::Request& req, httplib::Response& res) {
-        res = withId(req);
-    });
-
-    server.listen("localhost", 8000);
+void showAlert(const std::string &message) {
+  // 在C++中，我们不能直接操作DOM，因此我们用一个简单的输出语句代替
+  std::cout << message << std::endl;
+  std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 }
