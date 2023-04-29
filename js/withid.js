@@ -1,5 +1,6 @@
 const toggleBtn = document.querySelector('.toggle-btn');
 const sidebar = document.querySelector('.sidebar');
+const enableWebAssembly = false;
 
 toggleBtn.addEventListener('click', () => {
 	sidebar.classList.toggle('visible');
@@ -115,3 +116,33 @@ idForm.addEventListener('submit', function(event) {
   
   }
 });
+
+
+
+if (enableWebAssembly) {
+  import("./question_bank.js")
+    .then(({ QuestionBank }) => {
+      // 使用从服务器获取的图片列表初始化题库
+      const questionBank = new QuestionBank(allImages);
+
+      // 在事件处理程序中使用QuestionBank实例
+      idForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const studentId = document.getElementById('student-id').value;
+
+        if (questionBank.isStudentIdUsed(studentId)) {
+          showAlert('禁止重复抽题');
+        } else {
+          const questionImage = questionBank.drawQuestion(studentId);
+
+          // 如果问题图像为空，表示学号已被使用
+          if (!questionImage) {
+            showAlert('禁止重复抽题');
+          } else {
+            // 显示抽取的题目等后续操作
+          }
+        }
+      });
+    });
+}
