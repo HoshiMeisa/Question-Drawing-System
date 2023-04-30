@@ -10,3 +10,4 @@ public:
 private:
     vector<string> images_;
 };
+
