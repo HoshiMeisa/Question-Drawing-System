@@ -1,5 +1,5 @@
 /* 
-Nodejs后端服务器的代码
+Nodejs后端服务器
 */
 
 const express = require('express');
@@ -28,7 +28,7 @@ app.use(express.static('public'));
 app.use('/images', express.static(path.join(__dirname, '../images')));
 
 
-
+//从题库中获取图片
 app.get('/get_images', (req, res) => {
     fs.readdir(path.join(__dirname, '../images'), (err, files) => {
         if (err) {
