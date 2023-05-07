@@ -10,18 +10,19 @@ toggleBtn.addEventListener('click', () => {
     sidebar.classList.toggle('visible');
 });
 
-// Load questions and display them
+// 加载并显示题目
 async function loadQuestions() {
-    const response = await fetch('http://10.33.88.88:3000/get_questions');
+    //从3000端口等待请求，这个端口是Nodejs服务器推送题目的端口
+    const response = await fetch('http://10.33.88.88:3000/get_questions'); 
     const questions = await response.json();
     displayQuestions(questions);
 }
 
-loadQuestions();
+loadQuestions();  //执行函数
 
 
-// Add a question
-addQuestionForm.addEventListener('submit', async (event) => {
+// 添加题目
+addQuestionForm.addEventListener('submit', async (event) => {  //事件：点击submit按钮
     event.preventDefault();
     const nameInput = document.getElementById('question-name');
     const imageInput = document.getElementById('question-image');
@@ -52,7 +53,7 @@ addQuestionForm.addEventListener('submit', async (event) => {
     reader.readAsDataURL(image);
 });
 
-// Display a question
+// 显示题目
 function displayQuestion(question) {
     const item = document.createElement('div');
     item.classList.add('question-item');
@@ -75,7 +76,7 @@ async function fetchDrawRecords() {
     displayDrawRecords(records);
 }
 
-// Display draw records
+// 显示抽题记录
 function displayDrawRecords(records) {
     drawRecordsTable.innerHTML = '';
     for (const record of records) {
@@ -97,7 +98,7 @@ function displayQuestions(questions) {
     }
 }
 
-// Show alert
+// 显示警告
 function showAlert(message) {
     alertDiv.textContent = message;
     alertDiv.style.display = 'block';
@@ -106,12 +107,12 @@ function showAlert(message) {
     }, 3000);
 }
 
-// Logout
+// 注销
 logoutBtn.addEventListener('click', () => {
     window.location.href = '../html/admin.html';
 });
 
-// Fetch draw records when the page loads
+// 当加载页面时获取抽题记录
 fetchDrawRecords();
 
 
