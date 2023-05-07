@@ -5,8 +5,8 @@ header {
 	background-color: #000;
 	color: #fff;
 	display: flex;
-	align-items: center;
-	padding: 10px;
+	align-items: center;    /*元素在交叉轴上的对齐方式*/
+	padding: 10px;          /*元素内容与元素边框的距离*/
 }
 header h1 {
 	margin: 0;
