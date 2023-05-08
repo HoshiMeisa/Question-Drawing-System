@@ -49,7 +49,6 @@ fetch('http://10.33.88.88:3000/used-ids')
         usedIds = data.map((entry) => entry.id);
     });
 
-// Fetch all images from the server
 let allImages = [];
 fetch('http://10.33.88.88:3000/get_images')
     .then(response => response.json())

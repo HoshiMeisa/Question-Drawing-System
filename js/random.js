@@ -11,7 +11,6 @@ randomBtn.addEventListener('click', async () => {
     const questionNum = 6;
     questionContainer.innerHTML = '';
 
-    // Fetch all images from the server
     const response = await fetch('http://10.33.88.88:3000/get_images');
     const images = await response.json();
 
