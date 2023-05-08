@@ -23,3 +23,7 @@ string QuestionBank::drawQuestion(const string& student_id) {
     used_student_ids_.push_back(student_id);
     return images_[random_index];
 }
+
+
+
+

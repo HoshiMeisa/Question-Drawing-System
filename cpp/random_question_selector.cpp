@@ -4,10 +4,21 @@
 #include <cstdlib>
 using namespace std;
 
-RandomQuestionSelector::RandomQuestionSelector(const vector<string>& images)
+class RandomQuestionSelector {
+public:
+    RandomQuestionSelector (const vector<string>& images);
+    vector<string> getRandomQuestions(int question_num);
+
+private:
+    vector<string> images_;
+};
+
+
+RandomQuestionSelector::RandomQuestionSelector(const vector<string>&images)
     : images_(images) {
     srand(time(0));
 }
+
 
 vector<string> RandomQuestionSelector::getRandomQuestions(int question_num) {
     vector<string> random_questions;

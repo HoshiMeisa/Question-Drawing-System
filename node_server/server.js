@@ -9,8 +9,8 @@ const path = require('path');
 const app = express();
 const port = 3000;
 const multer = require('multer');
-const storage = multer.diskStorage({
 
+const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, '../images');
   },
